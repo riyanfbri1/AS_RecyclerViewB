@@ -24,25 +24,24 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FloatingActionButton _addButton;
-    private RecyclerView _recyclerview1;
+    private RecyclerView _recyclerView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        _recyclerview1 = (RecyclerView) findViewById(R.id.recyclerView1);
+        _recyclerView1 = findViewById(R.id.recyclerView1);
 
         initAddButton();
         loadRecyclerView();
     }
 
-    private void loadRecyclerView(){
+    private void loadRecyclerView() {
         AsyncHttpClient ahc = new AsyncHttpClient();
         String url = "https://stmikpontianak.net/011100862/tampilMahasiswa.php";
 
-        ahc.get(url, new AsyncHttpResponseHandler()
-        {
+        ahc.get(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody)
             {
@@ -50,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
                 List<MahasiswaModel> mahasiswaModelList = g.fromJson(new String(responseBody), new TypeToken<List<MahasiswaModel>>(){}.getType());
 
                 RecyclerView.LayoutManager lm = new LinearLayoutManager(MainActivity.this);
-                _recyclerview1.setLayoutManager(lm);
+                _recyclerView1.setLayoutManager(lm);
 
                 MahasiswaAdapter ma = new MahasiswaAdapter(mahasiswaModelList);
-                _recyclerview1.setAdapter(ma);
+                _recyclerView1.setAdapter(ma);
             }
 
             @Override

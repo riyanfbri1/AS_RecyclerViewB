@@ -13,22 +13,23 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaViewHolder> 
 
     private List<MahasiswaModel> _mahasiswaModelList;
 
-    public MahasiswaAdapter(List<MahasiswaModel> mahasiswaModelList){
+    public MahasiswaAdapter(List<MahasiswaModel> mahasiswaModelList)
+    {
         this._mahasiswaModelList = mahasiswaModelList;
     }
 
-
     @NonNull
     @Override
-    public MahasiswaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MahasiswaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+    {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View v = inflater.inflate(R.layout.list_mahasiswa,parent,false);
-
+        View v = inflater.inflate(R.layout.list_mahasiswa, parent, false);
         return new MahasiswaViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MahasiswaViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MahasiswaViewHolder holder, int position)
+    {
         MahasiswaModel mm = _mahasiswaModelList.get(position);
 
         holder._jkImageView.setImageResource(R.drawable.boy);
@@ -43,17 +44,21 @@ public class MahasiswaAdapter extends RecyclerView.Adapter<MahasiswaViewHolder> 
         holder._jkTextView.setText(mm.getJenisKelamin());
 
         String jp = mm.getJP();
-        jp = jp.substring(0,2);
+        jp = jp.substring(0, 2); // Hanya Mengambil 2 Karakter Depan
         holder._jpTextView.setText(jp);
+
     }
 
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+    {
         int count = 0;
-        if (_mahasiswaModelList !=null)
+
+        if (_mahasiswaModelList != null)
         {
             count = _mahasiswaModelList.size();
         }
+
         return count;
     }
 }
